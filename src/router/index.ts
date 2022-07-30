@@ -4,20 +4,28 @@ import Vue from "vue";
 Vue.use(VueRouter);
 //Router components
 import Login from "@/pages/Login.vue";
+import SideNavigation from "@/components/SideNavigation.vue";
 import Dashboard from "@/pages/Dashboard.vue";
+import Accounts from "@/pages/Accounts.vue";
 /**
  * Routes
  */
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    component: Dashboard,
+    component: SideNavigation,
     name: "Home",
     redirect: "home",
     children: [
       {
         path: "home",
         component: Dashboard,
+        name: "Stats",
+        meta: { auth: true },
+      },
+      {
+        path: "/accounts",
+        component: Accounts,
         name: "Stats",
         meta: { auth: true },
       },
