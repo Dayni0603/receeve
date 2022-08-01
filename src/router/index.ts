@@ -7,6 +7,7 @@ import Login from "@/pages/Login.vue";
 import SideNavigation from "@/components/SideNavigation.vue";
 import Dashboard from "@/pages/Dashboard.vue";
 import Accounts from "@/pages/Accounts.vue";
+import AccountInfo from "@/pages/AccountInfo.vue";
 /**
  * Routes
  */
@@ -29,9 +30,12 @@ const routes: Array<RouteConfig> = [
         name: "Stats",
         meta: { auth: true },
       },
-      //,
-      // { path: 'accounts', component: Accounts, name: 'Accounts', meta: {auth: true} },
-      // { path: 'account-details/:id', component: AccountInfo, name: 'Account Info', meta: {auth: true} }
+      {
+        path: "account-details/:id",
+        component: AccountInfo,
+        name: "Account Info",
+        meta: { auth: true },
+      },
     ] as Array<RouteConfig>,
   },
   {
