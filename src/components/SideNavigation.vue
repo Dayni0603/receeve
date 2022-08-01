@@ -6,13 +6,15 @@
           <div class="flex items-center">
             <div class="shrink-0">
               <img
-                src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                src="https://mdbcdn.b-cdn.net/img/new/avatars/13.webp"
                 class="rounded-full w-10"
                 alt="Avatar"
               />
             </div>
             <div class="grow ml-3">
-              <p class="text-sm font-semibold text-blue-600">Jason McCoel</p>
+              <p class="text-sm font-semibold text-blue-600">
+                Danayit Mulugeta
+              </p>
             </div>
           </div>
         </a>
@@ -22,7 +24,7 @@
         <li class="relative">
           <a
             class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out"
-            href="#!"
+            href="/"
             data-mdb-ripple="true"
             data-mdb-ripple-color="primary"
           >
@@ -46,7 +48,7 @@
         <li class="relative">
           <a
             class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out"
-            href="#!"
+            href="/accounts"
             data-mdb-ripple="true"
             data-mdb-ripple-color="primary"
           >
