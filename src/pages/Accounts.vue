@@ -1,7 +1,7 @@
 <template>
   <div>
     <h5>Accounts</h5>
-    <div class="flex flex-col">
+    <div class="flex flex-col gap-3.5">
       <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
           <div class="overflow-hidden">
@@ -77,7 +77,11 @@
                   >
                     {{ account.debtor.mobilePhone }}
                   </td>
-                  <td>{{ account.debtor.email }}</td>
+                  <td
+                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                  >
+                    {{ account.debtor.email }}
+                  </td>
                   <td
                     class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                   >
@@ -91,106 +95,40 @@
                   </td>
                 </tr>
               </tbody>
-              <!-- <thead class="border-b">
-                <tr>
-                  <th
-                    scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    #
-                  </th>
-                  <th
-                    scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    First
-                  </th>
-                  <th
-                    scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    Last
-                  </th>
-                  <th
-                    scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    Handle
-                  </th>
-                </tr>
-              </thead> -->
-              <!-- <tbody>
-                <tr class="border-b">
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                  >
-                    1
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    Mark
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    Otto
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    @mdo
-                  </td>
-                </tr>
-                <tr class="bg-white border-b">
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                  >
-                    2
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    Jacob
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    Thornton
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    @fat
-                  </td>
-                </tr>
-                <tr class="bg-white border-b">
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                  >
-                    3
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    Larry
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    Wild
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    @twitter
-                  </td>
-                </tr>
-              </tbody> -->
             </table>
           </div>
         </div>
       </div>
+
+      <nav aria-label="Page navigation example">
+        <ul class="inline-flex -space-x-px">
+          <li>
+            <a
+              class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >Previous</a
+            >
+          </li>
+          <li>
+            <a
+              class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >1</a
+            >
+          </li>
+          <li>
+            <a
+              class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >2</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >Next</a
+            >
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </template>
@@ -215,6 +153,18 @@ export default class Accounts extends Vue {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  //Getters
+  get pageNums(): Array<string> {
+    let splitLinks = this.links.split(",");
+    splitLinks.map((link, index) => {
+      let strLink = link.split(";")[0];
+      strLink = strLink.replace(/[<>]/g, "");
+      splitLinks[index] = strLink.split("=")[1];
+    });
+
+    return splitLinks;
   }
 }
 </script>
