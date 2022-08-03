@@ -115,7 +115,7 @@
         </div>
       </main>
     </div>
-    <div class="flex">
+    <div class="flex justify-around">
       <div class="p-3 overflow-x-auto relative shadow-md sm:rounded-lg">
         <h5 class="text-2xl text-gray-600 flex items-center">
           <svg
