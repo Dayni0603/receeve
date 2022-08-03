@@ -1,134 +1,76 @@
 <template>
   <div>
     <h5>Accounts</h5>
-    <div class="flex flex-col gap-3.5">
-      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-          <div class="overflow-hidden">
-            <table class="min-w-full">
-              <thead class="border-b">
-                <tr>
-                  <th
-                    scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    #
-                  </th>
-                  <th
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    TITLE
-                  </th>
-                  <th
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    NAME
-                  </th>
-                  <th
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    STATE
-                  </th>
-                  <th
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    MOBILE
-                  </th>
-                  <th
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    EMAIL
-                  </th>
-                  <th
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    ACTION
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  class="border-b"
-                  v-for="(account, index) in accounts"
-                  :key="index"
+    <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead
+          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="py-3 px-6">
+              #
+            </th>
+            <th scope="col" class="py-3 px-6">
+              Name
+            </th>
+            <th scope="col" class="py-3 px-6">
+              State
+            </th>
+            <th scope="col" class="py-3 px-6">
+              Mobile
+            </th>
+            <th scope="col" class="py-3 px-6">
+              Email
+            </th>
+            <th scope="col" class="py-3 px-6">
+              Action
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+            v-for="(account, index) in accounts"
+            :key="index"
+          >
+            <th
+              scope="row"
+              class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              {{ index + 1 }}
+            </th>
+            <td class="py-4 px-6">
+              {{ account.debtor.title }}{{ account.debtor.firstName }}
+              {{ account.debtor.lastName }}
+            </td>
+            <td class="py-4 px-6">
+              {{ account.debtor.address.state }}
+            </td>
+            <td class="py-4 px-6">
+              {{ account.debtor.mobilePhone }}
+            </td>
+            <td class="py-4 px-6">
+              {{ account.debtor.email }}
+            </td>
+            <td class="py-4 px-6">
+              <button
+                type="button"
+                @click="$router.push(`account-details/${account.id}`)"
+                class="inline-block text-gray-500 hover:text-gray-700"
+              >
+                <svg
+                  class="inline-block h-6 w-6 fill-current"
+                  viewBox="0 0 24 24"
                 >
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                  >
-                    {{ index + 1 }}
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    {{ account.debtor.title }}
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    {{ account.debtor.firstName }} {{ account.debtor.lastName }}
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    {{ account.debtor.address.state }}
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    {{ account.debtor.mobilePhone }}
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    {{ account.debtor.email }}
-                  </td>
-                  <td
-                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                  >
-                    <button
-                      type="button"
-                      @click="$router.push(`account-details/${account.id}`)"
-                      class="btn btn-main btn-action"
-                    >
-                      Details <span class="las la-arrow-right"></span>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <nav aria-label="Page navigation example">
-        <ul class="inline-flex -space-x-px">
-          <li>
-            <a
-              class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-              >Previous</a
-            >
-          </li>
-          <li>
-            <a
-              class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-              >1</a
-            >
-          </li>
-          <li>
-            <a
-              class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-              >2</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-              >Next</a
-            >
-          </li>
-        </ul>
-      </nav>
+                  <path
+                    d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z"
+                  />
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
