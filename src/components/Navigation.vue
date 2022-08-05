@@ -1,82 +1,216 @@
 <template>
-  <div>
-    <div class="w-60 h-full shadow-md bg-white absolute" id="sidenavSecExample">
-      <div class="pt-4 pb-2 px-6">
-        <a href="#!">
-          <div class="flex items-center">
-            <div class="shrink-0">
-              <img
-                src="https://mdbcdn.b-cdn.net/img/new/avatars/13.webp"
-                class="rounded-full w-10"
-                alt="Avatar"
-              />
-            </div>
-            <div class="grow ml-3">
-              <p class="text-sm font-semibold text-blue-600">
-                Danayit Mulugeta
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-      <hr class="my-2" />
-      <ul class="relative px-1">
-        <li class="relative">
+  <div class="flex bg-gray-100 min-h-screen" x-data="{panel:false, menu:true}">
+    <aside class="flex flex-col">
+      <a
+        href="#"
+        class="inline-flex items-center justify-center h-20 w-full bg-blue-600 hover:bg-blue-500 focus:bg-blue-500"
+      >
+        <img src="@/assets/logo.png" alt="LOGO" width="45px" />
+        <span class="text-2xl pb-1.5" style="{color:aqua}">ceeve</span>
+      </a>
+      <div
+        class="flex-grow flex flex-col justify-between text-gray-500 bg-gray-800"
+      >
+        <nav class="flex flex-col mx-4 my-6 space-y-4">
           <a
-            class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out"
             href="/"
-            data-mdb-ripple="true"
-            data-mdb-ripple-color="primary"
+            class="inline-flex items-center py-3 text-blue-600 bg-white rounded-lg px-2"
           >
             <svg
               aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              class="w-3 h-3 mr-3"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              class="h-6 w-6"
             >
               <path
-                fill="currentColor"
-                d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"
-              ></path>
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+              />
             </svg>
-            <span>Dashboard</span>
+            <span class="ml-2" x-show="menu">Dashboard</span>
           </a>
-        </li>
-        <li class="relative">
           <a
-            class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out"
             href="/accounts"
-            data-mdb-ripple="true"
-            data-mdb-ripple-color="primary"
+            class="inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2"
           >
             <svg
               aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              class="w-3 h-3 mr-3"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              class="h-6 w-6"
             >
               <path
-                fill="currentColor"
-                d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"
-              ></path>
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+              />
             </svg>
-            <span>Accounts</span>
+            <span class="ml-2" x-show="menu">Accounts</span>
           </a>
-        </li>
-      </ul>
-      <div class="text-center bottom-0 absolute w-full">
-        <hr class="m-0" />
-        <p class="py-2 text-sm text-gray-700">tailwind-elements.com</p>
+        </nav>
+        <div class="flex justify-end">
+          <a
+            class="inline-flex p-3 hover:text-gray-400 justify-center border-gray-700 h-15 w-full border-t hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 px-2"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              class="h-6 w-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+            <span class="ml-2" x-show="menu">Settings</span>
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="pt-16 pl-64">
-      <router-view></router-view>
+    </aside>
+    <div class="flex-grow text-gray-800">
+      <header class="flex items-center h-20 px-6 sm:px-10 bg-white">
+        <div class="mr-8 cursor-pointer">
+          <svg
+            class="w-8 h-8"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </div>
+        <div class="relative w-full max-w-md sm:-ml-2">
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="absolute h-6 w-6 mt-2.5 ml-2 text-gray-400"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <input
+            type="text"
+            role="search"
+            placeholder="Search..."
+            class="py-2 pl-10 pr-4 w-full border-4 border-transparent placeholder-gray-400 focus:bg-gray-50 rounded-lg"
+          />
+        </div>
+        <div class="flex flex-shrink-0 items-center ml-auto">
+          <button
+            class="relative inline-flex items-center p-2 hover:bg-gray-100 focus:bg-gray-100 rounded-lg"
+          >
+            <span class="sr-only">User Menu</span>
+            <div
+              class="hidden md:flex md:flex-col md:items-end md:leading-tight"
+            >
+              <span class="font-semibold">Danayit Mulugeta</span>
+              <span class="text-sm text-gray-600">Full-stack Developer</span>
+            </div>
+            <span
+              class="h-12 w-12 ml-2 sm:ml-3 mr-2 bg-gray-100 rounded-full overflow-hidden"
+            >
+              <img
+                src="https://randomuser.me/api/portraits/women/10.jpg"
+                alt="user profile photo"
+                class="h-full w-full object-cover"
+              />
+            </span>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="hidden sm:block h-6 w-6 text-gray-300"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+          <div
+            class="absolute top-20 bg-white border rounded-md p-2 w-56"
+            x-show="panel"
+            style="display:none"
+          >
+            <div class="p-2 hover:bg-blue-100 cursor-pointer">Profile</div>
+            <div class="p-2 hover:bg-blue-100 cursor-pointer">Messages</div>
+            <div class="p-2 hover:bg-blue-100 cursor-pointer">To-Do's</div>
+          </div>
+          <div class="border-l pl-3 ml-3 space-x-1">
+            <button
+              class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full"
+            >
+              <span class="sr-only">Notifications</span>
+              <span
+                class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full"
+              ></span>
+              <span
+                class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping"
+              ></span>
+              <svg
+                aria-hidden="true"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                class="h-6 w-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                />
+              </svg>
+            </button>
+            <button
+              class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full"
+            >
+              <span class="sr-only">Log out</span>
+              <svg
+                aria-hidden="true"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                class="h-6 w-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+      <main class="p-6 sm:p-10 space-y-6"><router-view></router-view></main>
     </div>
   </div>
 </template>
