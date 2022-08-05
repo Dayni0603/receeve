@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import SideNavigation from "./components/SideNavigation.vue";
+import SideNavigation from "./components/Navigation.vue";
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({ components: { SideNavigation } })

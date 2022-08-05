@@ -4,7 +4,7 @@ import Vue from "vue";
 Vue.use(VueRouter);
 //Router components
 import Login from "@/pages/Login.vue";
-import SideNavigation from "@/components/SideNavigation.vue";
+import Navigation from "@/components/Navigation.vue";
 import Dashboard from "@/pages/Dashboard.vue";
 import Accounts from "@/pages/Accounts.vue";
 import AccountInfo from "@/pages/AccountInfo.vue";
@@ -14,7 +14,7 @@ import AccountInfo from "@/pages/AccountInfo.vue";
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    component: SideNavigation,
+    component: Navigation,
     name: "Home",
     redirect: "home",
     children: [
