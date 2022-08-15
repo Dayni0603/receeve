@@ -21,13 +21,13 @@ const routes: Array<RouteConfig> = [
       {
         path: "home",
         component: Dashboard,
-        name: "Stats",
+        name: "Dashboard",
         meta: { auth: true },
       },
       {
         path: "/accounts",
         component: Accounts,
-        name: "Stats",
+        name: "Accounts",
         meta: { auth: true },
       },
       {
