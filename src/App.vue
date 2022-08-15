@@ -10,8 +10,6 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component({ components: { SideNavigation } })
 export default class App extends Vue {
-  mounted(): void {
-    console.log("let's go");
-  }
+  mounted(): void {}
 }
 </script>
