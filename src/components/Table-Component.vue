@@ -11,6 +11,7 @@
           v-for="column in columns"
           :key="column.id"
         >
+         <slot></slot>
           {{ column.text }}
         </th>
         <th v-if="actions !== undefined && actions.length != 0">Actions</th>
@@ -25,12 +26,7 @@
             >
           </td>
           <td scope="row" v-for="column in columns" :key="column.id">
-            <span
-              class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              <slot
-                
-              ></slot>
+            <span class="py-4 px-6 text-gray-900 whitespace-nowrap">
               {{ item[column.field] }}
             </span>
           </td>
@@ -38,7 +34,7 @@
             <span
               v-for="(action, a) in actions"
               :key="a"
-              class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              class="py-4 px-6 text-gray-900 whitespace-nowrap"
             >
               <span @click="action.event">{{ action.name }}</span>
             </span>

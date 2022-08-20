@@ -3,8 +3,8 @@
     <h5>Accounts</h5>
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
       <TableComponent :columns="columns" :data="accounts" :actions="actions">
-        <template>
-          <i>hey</i>
+        <template v-slot:columns="slotProps">
+          <span>{{ formatDate(slotProps.item.createdAt) }}</span>
         </template>
       </TableComponent>
     </div>
@@ -22,11 +22,10 @@ export default class Accounts extends Vue {
 
   //An array of fields for the data
   columns: Array<any> = [
-    { text: "ID", field: "id" },
-    { text: "Name", field: "name" },
-    { text: "State", field: "state" },
-    { text: "Mobile", field: "mobile" },
-    { text: "Email", field: "email" },
+    { text: "Name", field: "name", slotName: "name-slot" },
+    { text: "State", field: "state", slotName: "state-slot" },
+    { text: "Mobile", field: "mobile", slotName: "mobile-slot" },
+    { text: "Email", field: "email", slotName: "email-slot" },
   ];
 
   //An array of actions for the table
@@ -36,13 +35,16 @@ export default class Accounts extends Vue {
     this.fetchAccounts();
   }
 
+  formatDate(data: any) {
+    console.log(data);
+  }
+
   //methods
   async fetchAccounts(page: number = 1) {
     try {
       const res = await this.axios.get(`accounts?_page=${page}`);
       this.links = res.headers.link;
       this.accounts = res.data as Array<Account>;
-      console.log(this.accounts);
     } catch (error) {
       console.log(error);
     }

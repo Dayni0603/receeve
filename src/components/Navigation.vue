@@ -12,9 +12,11 @@
         class="flex-grow flex flex-col justify-between text-gray-500 bg-gray-800"
       >
         <nav class="flex flex-col mx-4 my-6 space-y-4">
-          <a
-            href="/"
-            class="inline-flex items-center py-3 text-blue-600 bg-white rounded-lg px-2"
+          <router-link
+            tag="li"
+            to="/home"
+            exact-active-class="exact-active"
+            class="inline-flex items-center py-3 text-blue-600 rounded-lg px-2"
           >
             <svg
               aria-hidden="true"
@@ -31,10 +33,13 @@
               />
             </svg>
             <span class="ml-2" x-show="menu">Dashboard</span>
-          </a>
-          <a
-            href="/accounts"
-            class="inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2"
+          </router-link>
+
+          <router-link
+            tag="li"
+            to="/accounts"
+            exact-active-class="exact-active"
+            class="inline-flex items-center py-3 text-blue-600 rounded-lg px-2"
           >
             <svg
               aria-hidden="true"
@@ -51,7 +56,7 @@
               />
             </svg>
             <span class="ml-2" x-show="menu">Accounts</span>
-          </a>
+          </router-link>
         </nav>
         <div class="flex justify-end">
           <a
@@ -222,3 +227,11 @@ export default class Navigation extends Vue {
   msg!: string;
 }
 </script>
+<style>
+nav li:hover,
+nav li.router-link-active,
+nav li.router-link-exact-active {
+  background-color: #fff;
+  cursor: pointer;
+}
+</style>
