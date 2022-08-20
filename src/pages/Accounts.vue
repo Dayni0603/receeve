@@ -2,23 +2,36 @@
   <div>
     <h5>Accounts</h5>
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-      <Table :fields="fields" :data="accounts"></Table>
+      <TableComponent :columns="columns" :data="accounts" :actions="actions">
+        <template>
+          <i>hey</i>
+        </template>
+      </TableComponent>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Account } from "@/interfaces/account";
+import { Actions } from "@/interfaces/TableData";
 import { Component, Vue } from "vue-property-decorator";
-import Table from "../components/Table.vue";
-@Component({ components: { Table } })
+import TableComponent from "../components/Table-Component.vue";
+@Component({ components: { TableComponent } })
 export default class Accounts extends Vue {
-  isVisible: boolean = false;
   accounts: Array<Account> = [];
   links: string = "";
 
-  //An array of values for the data
-  accountData: Array<any> = [];
-  fields: Array<any> = ["#", "Name", "State", "Mobile", "Email"];
+  //An array of fields for the data
+  columns: Array<any> = [
+    { text: "ID", field: "id" },
+    { text: "Name", field: "name" },
+    { text: "State", field: "state" },
+    { text: "Mobile", field: "mobile" },
+    { text: "Email", field: "email" },
+  ];
+
+  //An array of actions for the table
+  actions: Array<Actions> = [{ name: "view", event: "" }];
+
   async mounted() {
     this.fetchAccounts();
   }
@@ -29,8 +42,7 @@ export default class Accounts extends Vue {
       const res = await this.axios.get(`accounts?_page=${page}`);
       this.links = res.headers.link;
       this.accounts = res.data as Array<Account>;
-
-      this.isVisible = true;
+      console.log(this.accounts);
     } catch (error) {
       console.log(error);
     }

@@ -6,3 +6,11 @@ export interface TableData {
   email:string;
   
 }
+
+export interface Actions {
+  name: string;
+  icon?: string;
+  class?: string;
+  event?: string;
+ 
+}
