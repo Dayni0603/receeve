@@ -67,6 +67,13 @@
           </tr>
         </tbody>
       </table>
+      <div class="pagination-container py pb-3">
+        <Pagination
+          :totalPages="totalPages"
+          :page="page"
+          @clicked="onPageChange"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -74,10 +81,12 @@
 import { Account } from "@/interfaces/account";
 import { Actions } from "@/interfaces/TableData";
 import { Component, Vue } from "vue-property-decorator";
-import TableComponent from "../components/Table-Component.vue";
-@Component({ components: { TableComponent } })
+import Pagination from "../components/Pagination.vue";
+@Component({ components: { Pagination } })
 export default class Accounts extends Vue {
   accounts: Array<Account> = [];
+  page: number = 1;
+  totalPages: number = 1;
   links: string = "";
 
   //An array of fields for the data
@@ -92,34 +101,27 @@ export default class Accounts extends Vue {
   actions: Array<Actions> = [{ name: "view", event: "" }];
 
   async mounted() {
-    this.fetchAccounts();
-  }
-
-  formatDate(data: any) {
-    console.log(data);
+    this.fetchAccounts(this.page);
   }
 
   //methods
-  async fetchAccounts(page: number = 1) {
+  async fetchAccounts(page: number) {
     try {
-      const res = await this.axios.get(`accounts?_page=${page}`);
+      const res = await this.axios.get(`accounts?_page=${this.page}`);
+      const count = await this.axios.get(`accounts`);
+      const dataCount = count.data.length;
       this.links = res.headers.link;
+      this.totalPages = Math.ceil(dataCount / 10);
       this.accounts = res.data as Array<Account>;
+      this.page = page;
+      console.log(this.totalPages);
     } catch (error) {
       console.log(error);
     }
   }
-
-  //Getters
-  get pageNums(): Array<string> {
-    let splitLinks = this.links.split(",");
-    splitLinks.map((link, index) => {
-      let strLink = link.split(";")[0];
-      strLink = strLink.replace(/[<>]/g, "");
-      splitLinks[index] = strLink.split("=")[1];
-    });
-
-    return splitLinks;
+  onPageChange(page: number) {
+    this.page = page;
+    this.fetchAccounts(this.page);
   }
 }
 </script>
