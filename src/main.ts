@@ -1,8 +1,17 @@
-import Vue from 'vue'
-import App from  '@/App.vue'
+import Vue from "vue";
+import App from "@/App.vue";
+import router from "./router";
+import "./index.css";
 
-Vue.config.productionTip = false
+//Axios integration
+import axios from "axios";
+import VueAxios from "vue-axios";
+Vue.use(VueAxios, axios);
+Vue.axios.defaults.baseURL = `http://localhost:9001/`;
+
+Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  router,
+  render: (h) => h(App),
+}).$mount("#app");
