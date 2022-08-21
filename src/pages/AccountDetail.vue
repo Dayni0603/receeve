@@ -3,15 +3,7 @@
     <div class="p-3 overflow-x-auto relative shadow-md sm:rounded-lg">
       <div>
         <h5 class="text-2xl text-gray-600 flex items-center">
-          <svg
-            class="fill-current text-gray-500 w-3 h-3 mr-2"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-          >
-            <path
-              d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z"
-            />
-          </svg>
+        <i class="fa-solid fa-arrow-rotate-left"></i>
           Accounts Info
         </h5>
         <hr />
@@ -85,7 +77,7 @@
       <div class="flex justify-between">
         <h5 class="text-2xl">Claims</h5>
         <p class="text-sm text-gray-600 flex items-center">
-          <svg
+          <!-- <svg
             class="fill-current text-gray-500 w-3 h-3 mr-2"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -94,7 +86,8 @@
               d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z"
             />
           </svg>
-          Share
+          Share -->
+          <font-awesome-icon icon="share" @click="share()" />
         </p>
       </div>
       <hr />
@@ -156,10 +149,14 @@ import { Account } from "../interfaces/account";
 import { Claim } from "../interfaces/claim";
 
 @Component
-export default class AccountInfo extends Vue {
+export default class AccountDetail extends Vue {
   account: object = {} as Account;
   claims: Array<Claim> = [];
   pageLink: string = "";
+
+  share() {
+    console.log("hello share");
+  }
 
   async mounted() {
     await this.fetchAccount();
