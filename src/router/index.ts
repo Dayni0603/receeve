@@ -31,7 +31,7 @@ const routes: Array<RouteConfig> = [
         meta: { auth: true },
       },
       {
-        path: "account-details/:id",
+        path: "accounts/detail/:id",
         component: AccountInfo,
         name: "Account Info",
         meta: { auth: true },
