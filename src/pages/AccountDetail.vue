@@ -11,6 +11,7 @@
 
     <section
       class="grid md:grid-cols-2 xl:grid-cols-4 xl:grid-rows-3 xl:grid-flow-col gap-6"
+      id="print"
     >
       <div
         class="flex flex-col md:col-span-2 md:row-span-2 bg-white shadow rounded-lg"
@@ -36,54 +37,42 @@
                 <h5 class="">
                   State:
                 </h5>
-                <span class="">{{
-                  account.debtor.address.state
-                }}</span></span
+                <span class="">{{ account.debtor.address.state }}</span></span
               >
 
               <span class="flex gap-2">
                 <h5 class="">
                   City:
                 </h5>
-                <span class="">{{
-                  account.debtor.address.city
-                }}</span></span
+                <span class="">{{ account.debtor.address.city }}</span></span
               >
 
               <span class="flex gap-2">
                 <h5 class="">
                   Zip:
                 </h5>
-                <span class="">{{
-                  account.debtor.address.zip
-                }}</span></span
+                <span class="">{{ account.debtor.address.zip }}</span></span
               >
 
               <span class="flex gap-2">
                 <h5 class="">
                   Country:
                 </h5>
-                <span class="">{{
-                  account.debtor.address.country
-                }}</span></span
+                <span class="">{{ account.debtor.address.country }}</span></span
               >
 
               <span class="flex gap-2">
                 <h5 class="">
                   Phone:
                 </h5>
-                <span class="">{{
-                  account.debtor.mobilePhone
-                }}</span></span
+                <span class="">{{ account.debtor.mobilePhone }}</span></span
               >
 
               <span class="flex gap-2">
                 <h5 class="">
                   Email:
                 </h5>
-                <span class="">{{
-                  account.debtor.email
-                }}</span></span
+                <span class="">{{ account.debtor.email }}</span></span
               >
             </div>
           </div>
@@ -92,9 +81,11 @@
       <div
         class="flex flex-col md:col-span-2 md:row-span-2 bg-white shadow rounded-lg"
       >
-        <div class="px-6 py-5 font-semibold border-b border-gray-100">
+        <div
+          class="px-6 py-5 font-semibold border-b border-gray-100 flex justify-between"
+        >
           Claims
-         
+          <a @click="print()">Share</a>
         </div>
         <div class="p-4 flex-grow">
           <div>
@@ -238,6 +229,10 @@ export default class AccountDetail extends Vue {
   onPageChange(page: number) {
     this.page = page;
     this.fetchAccount(this.page);
+  }
+
+  print() {
+    window.print();
   }
 }
 </script>
