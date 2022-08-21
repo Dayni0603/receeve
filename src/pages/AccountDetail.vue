@@ -128,32 +128,50 @@
           </tr>
         </tbody>
       </table>
+      <div class="pagination-container py pb-3">
+        <Pagination
+          :totalPages="totalPages"
+          :page="page"
+          @clicked="onPageChange"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import Pagination from "@/components/Pagination.vue";
 import { Component, Vue } from "vue-property-decorator";
 import { Account } from "../interfaces/account";
 import { Claim } from "../interfaces/claim";
 
-@Component({ components: {} })
+@Component({ components: { Pagination } })
 export default class AccountDetail extends Vue {
   account: object = {} as Account;
   claims: Array<Claim> = [];
   pageLink: string = "";
+  page: number = 1;
+  totalPages: number = 1;
+
+  columns: Array<any> = [
+    { text: "Currency", field: "currency" },
+    { text: "Base Amt", field: "baseAmount" },
+    { text: "Fees", field: "fees" },
+    { text: "Due Date", field: "dueDate" },
+    { text: "Status", field: "status" },
+  ];
 
   share() {
     console.log("hello share");
   }
 
   async mounted() {
-    await this.fetchAccount();
+    await this.fetchAccount(this.page);
     this.pageLink = window.location.href;
   }
 
   //methods
-  async fetchAccount() {
+  async fetchAccount(page: number) {
     //verify that the route params is present on route else redirect user
     if (!this.$route.params.id) return this.$router.push("/");
 
@@ -168,10 +186,17 @@ export default class AccountDetail extends Vue {
       const resClaim = await this.axios.get(
         `claims?accountId=${this.$route.params.id}`
       );
-      this.claims = resClaim.data as Array<Claim>;
+      const dataCount = resClaim.data.length;
+      let limit = 3;
+      let data = resClaim.data.slice(0, limit);
+      this.claims = data;
+      this.totalPages = Math.ceil(dataCount / 3);
+      this.page = page;
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
+    console.log(page);
   }
 
   attachStatusColor(status: string): string {
@@ -181,8 +206,12 @@ export default class AccountDetail extends Vue {
     } else if (status === "paid") {
       return "bg-green-200";
     } else {
-      return "bg-orange-200";
+      return "bg-pink-200";
     }
+  }
+  onPageChange(page: number) {
+    this.page = page;
+    this.fetchAccount(this.page);
   }
 }
 </script>
