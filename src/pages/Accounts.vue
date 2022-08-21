@@ -2,11 +2,71 @@
   <div>
     <h5>Accounts</h5>
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-      <TableComponent :columns="columns" :data="accounts" :actions="actions">
-        <template v-slot:columns="slotProps">
-          <span>{{ formatDate(slotProps.item.createdAt) }}</span>
-        </template>
-      </TableComponent>
+      <table>
+        <thead
+          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <th scope="col" class="py-3 px-6">#</th>
+          <th
+            scope="col"
+            class="py-3 px-6"
+            v-for="column in columns"
+            :key="column.id"
+          >
+            {{ column.text }}
+          </th>
+          <th v-if="actions !== undefined && actions.length != 0">Actions</th>
+        </thead>
+        <tbody>
+          <tr v-for="(item, i) in accounts" :key="item.id">
+            <td scope="row">
+              <span
+                class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {{ i + 1 }}</span
+              >
+            </td>
+            <td scope="row">
+              <span
+                class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {{ item.debtor.title }} {{ item.debtor.firstName }}
+                {{ item.debtor.lastName }}</span
+              >
+            </td>
+            <td scope="row">
+              <span
+                class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >{{ item.debtor.address.state }}</span
+              >
+            </td>
+            <td scope="row">
+              <span
+                class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >{{ item.debtor.mobilePhone }}</span
+              >
+            </td>
+            <td scope="row">
+              <span
+                class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >{{ item.debtor.email }}</span
+              >
+            </td>
+            <td scope="row">
+              <a @click="$router.push(`accounts/detail/${item.id}`)">detail</a>
+            </td>
+            <!-- <th v-if="actions !== undefined && actions.length != 0">
+              <span
+                v-for="(action, a) in actions"
+                :key="a"
+                class="py-4 px-6 text-gray-900 whitespace-nowrap"
+              >
+                <span @click="action.event">{{ action.name }}</span>
+              </span>
+            </th> -->
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -22,10 +82,10 @@ export default class Accounts extends Vue {
 
   //An array of fields for the data
   columns: Array<any> = [
-    { text: "Name", field: "name", slotName: "name-slot" },
-    { text: "State", field: "state", slotName: "state-slot" },
-    { text: "Mobile", field: "mobile", slotName: "mobile-slot" },
-    { text: "Email", field: "email", slotName: "email-slot" },
+    { text: "Name", field: "debtor", name: "name" },
+    { text: "State", field: "debtor", name: "state" },
+    { text: "Mobile", field: "debtor", name: "mobile" },
+    { text: "Email", field: "debtor", name: "email" },
   ];
 
   //An array of actions for the table
