@@ -7,7 +7,7 @@ import Login from "@/pages/Login.vue";
 import Navigation from "@/components/Navigation.vue";
 import Dashboard from "@/pages/Dashboard.vue";
 import Accounts from "@/pages/Accounts.vue";
-import AccountInfo from "@/pages/AccountInfo.vue";
+import AccountDetail from "@/pages/AccountDetail.vue";
 /**
  * Routes
  */
@@ -32,7 +32,7 @@ const routes: Array<RouteConfig> = [
       },
       {
         path: "accounts/detail/:id",
-        component: AccountInfo,
+        component: AccountDetail,
         name: "Account Info",
         meta: { auth: true },
       },
