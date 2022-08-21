@@ -1,5 +1,5 @@
 <template>
-  <div class="flex bg-gray-100 min-h-screen" x-data="{panel:false, menu:true}">
+  <div class="flex bg-gray-100 min-h-screen">
     <aside class="flex flex-col">
       <a
         href="#"
@@ -133,7 +133,7 @@
             <div
               class="hidden md:flex md:flex-col md:items-end md:leading-tight"
             >
-              <span class="font-semibold">Danayit Mulugeta</span>
+             <span class="font-semibold">Danayit Mulugeta</span>
               <span class="text-sm text-gray-600">Full-stack Developer</span>
             </div>
             <span
@@ -215,7 +215,7 @@
           </div>
         </div>
       </header>
-      <main class="p-6 sm:p-10 space-y-6"><router-view></router-view></main>
+      <router-view></router-view>
     </div>
   </div>
 </template>
