@@ -11,48 +11,50 @@
     <section class="">
       <div class="p-8 bg-white shadow rounded-lg">
         <table>
-          <thead>
-            <th scope="col">#</th>
-            <th scope="col" v-for="column in columns" :key="column.id">
+          <thead
+            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+          >
+            <th scope="col" class="py-3 px-6">#</th>
+            <th scope="col" class="py-3 px-6" v-for="column in columns" :key="column.id">
               {{ column.text }}
             </th>
             <th v-if="actions !== undefined && actions.length != 0">Actions</th>
           </thead>
           <tbody>
             <tr v-for="(item, i) in accounts" :key="item.id">
-              <td scope="row">
+              <td scope="row" class="py-2 px-3">
                 <span> {{ i + 1 }}</span>
               </td>
-              <td scope="row">
+              <td scope="row" class="py-2 px-3">
                 <span>
                   {{ item.debtor.title }} {{ item.debtor.firstName }}
                   {{ item.debtor.lastName }}</span
                 >
               </td>
-              <td scope="row">
+              <td scope="row" class="py-2 px-3">
                 <span>{{ item.debtor.address.state }}</span>
               </td>
-              <td scope="row">
+              <td scope="row" class="py-2 px-3">
                 <span>{{ item.debtor.mobilePhone }}</span>
               </td>
-              <td scope="row">
+              <td scope="row" class="py-2 px-3">
                 <span>{{ item.debtor.email }}</span>
               </td>
-              <td scope="row">
+              <td scope="row" class="py-2 px-3">
                 <a @click="$router.push(`accounts/detail/${item.id}`)"
-                  >detail</a
+                  ><small>view</small></a
                 >
               </td>
             </tr>
           </tbody>
         </table>
-         <div class="pagination-container py-4">
-        <Pagination
-          :totalPages="totalPages"
-          :page="page"
-          @clicked="onPageChange"
-        />
-      </div>
+        <div class="pagination-container py-4">
+          <Pagination
+            :totalPages="totalPages"
+            :page="page"
+            @clicked="onPageChange"
+          />
+        </div>
       </div>
     </section>
   </main>

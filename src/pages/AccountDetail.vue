@@ -94,6 +94,7 @@
       >
         <div class="px-6 py-5 font-semibold border-b border-gray-100">
           Claims
+         
         </div>
         <div class="p-4 flex-grow">
           <div>

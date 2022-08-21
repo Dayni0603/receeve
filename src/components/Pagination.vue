@@ -12,31 +12,11 @@
             >Previous</a
           >
         </li>
-        <!-- <li class="page-item">
-          <a
-            class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-            @click="changePage('', 1)"
-            >1</a
-          >
-        </li>
-        <li class="page-item">
-          <a
-            class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-            @click="changePage('', 2)"
-            >2</a
-          >
-        </li>
-        <li class="page-item">
-          <a
-            class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-            @click="changePage('', 3)"
-            >3</a
-          >
-        </li> -->
+      
         <li class="page-item" v-for="index in totalPages" :key="index">
           <a
             class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-            :class="page == index ? 'bg-white' : ''"
+            :class="page == index ? 'bg-gray-400' : ''"
             @click="changePage('', index)"
             >{{ index }}</a
           >
