@@ -58,18 +58,18 @@ const router = new VueRouter({
 /**
  * route guard, Prevent unauthorized accounts from accessing pages that need auth
  */
-//  router.beforeEach((to, from, next) => {
-//   const token = localStorage.token
+ router.beforeEach((to, from, next) => {
+  const token = localStorage.token
 
-//   if(to.meta.auth === true && !token) {
-//       return next('/login')
-//   }
+  if(to.meta.auth === true && !token) {
+      return next('/login')
+  }
 
-//   if(!to.meta.auth && token) {
-//       return next('/home')
-//   }
+  if(!to.meta.auth && token) {
+      return next('/home')
+  }
 
-//   next()
-// })
+  next()
+})
 
 export default router;

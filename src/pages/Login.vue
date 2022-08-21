@@ -14,7 +14,7 @@
           />
         </div>
         <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-          <form>
+          <form @submit.prevent="login()">
             <div
               class="flex flex-row items-center justify-center lg:justify-start"
             >
@@ -69,7 +69,6 @@
                   viewBox="0 0 448 512"
                   class="w-4 h-4"
                 >
-                  <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
                   <path
                     fill="currentColor"
                     d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
@@ -89,7 +88,8 @@
               <input
                 type="text"
                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="exampleFormControlInput2"
+                v-model="email"
+                id="email"
                 placeholder="Email address"
               />
             </div>
@@ -99,9 +99,20 @@
               <input
                 type="password"
                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="exampleFormControlInput2"
+                v-model="password"
+                id="password"
                 placeholder="Password"
               />
+            </div>
+
+            <div
+              v-if="errors.length"
+              class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+              role="alert"
+            >
+              <ul v-for="(error, e) in errors" :key="e">
+                <li>{{ error }}</li>
+              </ul>
             </div>
 
             <div class="flex justify-between items-center mb-6">
@@ -111,6 +122,7 @@
                   class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   id="exampleCheck2"
                 />
+
                 <label
                   class="form-check-label inline-block text-gray-800"
                   for="exampleCheck2"
@@ -122,7 +134,6 @@
 
             <div class="text-center lg:text-left">
               <button
-                type="button"
                 class="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
               >
                 Login
@@ -149,19 +160,18 @@ export default class Login extends Vue {
   //Data definitions
   email: string = "";
   password: string = "";
+  errors: string[] = [];
 
   //methods
   login() {
     //validate empty data
-    // if(!this.email || !this.password) {
-    //     return this.$toast.open({
-    //         message: "Email and password are required",
-    //         type: "error"
-    //     })
-    // }
-    // const token = JSON.stringify(Math.floor(Math.random() * 100900) + 1) //Random token for user session
-    // localStorage.setItem('token', token) //store token in localStorage
-    // this.$router.push('/')
+    this.errors = [];
+    if (!this.email || !this.password) {
+      return this.errors.push("Email and password are required");
+    }
+    const token = JSON.stringify(Math.floor(Math.random() * 100900) + 1); //Random token for user session
+    localStorage.setItem("token", token); //store token in localStorage
+    this.$router.push("/");
   }
 }
 </script>
